@@ -38,6 +38,10 @@
   --ifm-toc-border-color: #e8ecf4;
   --ifm-color-emphasis-200: #eef1f7;
   --ifm-color-emphasis-300: #dde3ee;
+  /* Blue-tinted muted-text ramp so secondary copy shares the palette. */
+  --ifm-color-emphasis-600: #677085;
+  --ifm-color-emphasis-700: #4c5670;
+  --ifm-color-emphasis-800: #343d54;
 
   --ifm-navbar-background-color: rgba(255, 255, 255, 0.72);
   --ifm-navbar-shadow: none;
@@ -59,6 +63,11 @@
     linear-gradient(to right, rgba(11, 21, 48, 0.045) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(11, 21, 48, 0.045) 1px, transparent 1px);
   --helyos-grid-size: 100% 100%, 32px 32px, 32px 32px;
+  /* Fainter chart grid that carries the motif onto cards/steps. */
+  --helyos-card-grid:
+    linear-gradient(rgba(11, 21, 48, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 21, 48, 0.028) 1px, transparent 1px);
+  --helyos-card-grid-size: 22px 22px;
 }
 
 /* ─────────────────────────  Dark (blue night)  ────────────────────────── */
@@ -78,6 +87,9 @@
   --ifm-toc-border-color: rgba(255, 255, 255, 0.09);
   --ifm-color-emphasis-200: #1a2540;
   --ifm-color-emphasis-300: #243152;
+  --ifm-color-emphasis-600: #8893ad;
+  --ifm-color-emphasis-700: #9aa6bf;
+  --ifm-color-emphasis-800: #b3bed6;
 
   --ifm-navbar-background-color: rgba(10, 15, 30, 0.66);
   --ifm-code-background: #121d36;
@@ -92,6 +104,9 @@
     radial-gradient(900px 460px at 78% -12%, rgba(var(--helyos-accent-rgb), 0.18), transparent 60%),
     linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  --helyos-card-grid:
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
 }
 
 /* ───────────────────────────  Headings  ───────────────────────────────── */
@@ -163,7 +178,7 @@ pre code {
 
 div[class^='codeBlockContainer'] {
   border-radius: 0.7rem;
-  box-shadow: 0 1px 2px rgba(11, 21, 48, 0.05);
+  box-shadow: 0 1px 2px rgba(var(--helyos-accent-rgb), 0.08);
 }
 
 code {
@@ -224,22 +239,29 @@ a code {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+/* ────────────────────  Keyboard focus (visible parity)  ────────────────── */
+/* :where() keeps specificity at 0 so components can layer richer focus styles. */
+:where(a, .button, .menu__link, .navbar__link, .pagination-nav__link):focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+  border-radius: var(--ifm-global-radius);
+}
+
 /* ───────────────────────────  Misc polish  ────────────────────────────── */
 ::selection {
   background: rgba(var(--helyos-accent-rgb), 0.22);
 }
 
-/* Status pill usable inside docs, e.g. <span class="helyos-badge">experimental</span> */
-.helyos-badge {
+/* Section eyebrow label — shared by the homepage sections (single source). */
+.helyos-eyebrow {
   display: inline-block;
-  padding: 0.1rem 0.55rem;
-  font-size: 0.72rem;
-  font-weight: 600;
+  margin-bottom: 0.7rem;
   font-family: var(--ifm-heading-font-family);
-  border-radius: 999px;
-  background: rgba(var(--helyos-accent-rgb), 0.14);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--ifm-color-primary);
-  vertical-align: middle;
 }
 
 /* Respect reduced-motion preferences. */

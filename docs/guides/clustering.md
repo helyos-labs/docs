@@ -10,7 +10,9 @@ Helyos scales from a single host to a multi-node cluster with one extra flag. Yo
 
 This guide walks through starting a master, joining workers, and operating the cluster day-to-day: heartbeats, rescheduling, draining, removing nodes, and rotating the join token.
 
-:::info Topology
+:::info 
+Topology
+
 A Helyos cluster is a single master plus N workers. The master runs the orchestrator, scheduler, REST API, and gRPC cluster server; workers run containers and report back. There is no external datastore — the master persists cluster state in its local SQLite store.
 :::
 
@@ -37,7 +39,9 @@ What these flags do:
 - `--master-ip 10.0.1.1` is the node IP handed to containers for DNS configuration in embedded mode.
 - `--overlay` enables the WireGuard overlay network (see the warning below).
 
-:::warning Overlay networking is experimental
+:::warning 
+Overlay networking is experimental
+
 The WireGuard overlay (`--overlay`, `--cluster-cidr`, `--wg-port`) is experimental. Tunnel creation is not yet implemented — the daemon currently only logs the intended overlay setup. CNI plugin support (`helyos setup cni`) is likewise experimental. For production multi-node use today, rely on routable node IPs rather than the overlay. See [Networking](/docs/guides/networking).
 :::
 
@@ -52,7 +56,9 @@ INFO   helyosd --mode worker --join 0.0.0.0:6444 --token nxa_<64-hex-chars>
 
 Copy the token from this line — it is only logged once. Replace the printed host (`0.0.0.0`) with an address your workers can actually reach (for example `10.0.1.1`).
 
-:::warning The token is shown only once
+:::warning 
+The token is shown only once
+
 The master stores the join token as a **hash**, not in plaintext — so it can never print the original value again. `helyos cluster token show` does **not** reveal the token; it returns an error reminding you that the token is shown only at creation. If you lose the token, generate a fresh one with `helyos cluster token rotate` (see [Rotate the join token](#rotate-the-join-token)) and use the new value.
 :::
 
@@ -96,7 +102,9 @@ Cluster gRPC traffic on port `6444` can run over TLS, and the trust model is int
 - **The CA is distributed out-of-band.** A worker enables gRPC TLS only when it finds the master's CA certificate (`grpc-ca.pem`) in its own data directory. You must copy that file from the master to each worker yourself — it is not fetched automatically during join. A worker started without the CA file connects to the master over **plaintext** gRPC. On an untrusted network, provision the CA before joining workers.
 - **Workers authenticate with the join token, not a client certificate.** Possession of a valid `nxa_` join token is what authorizes a node to join. The master validates the token on `register`; the persistent heartbeat stream is keyed to the already-registered node.
 
-:::warning Protect the join token
+:::warning 
+Protect the join token
+
 Anyone with the join token can register a node in your cluster. Distribute it over a secure channel, and rotate it if it may have leaked (see [Rotate the join token](#rotate-the-join-token)). When the worker has the master's CA and gRPC TLS is in effect, the token is sent over the encrypted channel; if you join workers without provisioning the CA (plaintext gRPC), the token crosses the wire in the clear, so do that only on a trusted network.
 :::
 
@@ -122,7 +130,9 @@ What happens when a worker goes silent:
 
 If the worker reconnects before these thresholds, no action is taken — a brief network blip will not move your pods.
 
-:::note Workers reconnect automatically
+:::note 
+Workers reconnect automatically
+
 If the heartbeat stream drops, the worker reconnects to the master with exponential backoff. You do not need to restart a worker after a transient network failure; it will re-establish its stream and resume heartbeating.
 :::
 
@@ -143,7 +153,9 @@ helyos nodes
 # worker-2 now shows status: Draining
 ```
 
-:::caution Drain status is reported by the worker's heartbeat
+:::caution 
+Drain status is reported by the worker's heartbeat
+
 The master tracks each node's status from its incoming heartbeats, and a running worker currently reports itself as `Ready` on every ping. As a result, marking a *live* worker `Draining` from the master is not sticky — the next heartbeat (within ~5s) flips it back to `Ready`. The reliable decommission path is to stop scheduling, then stop the `helyosd` worker process so it stops heartbeating; once it has gone silent its status is no longer overwritten and `drain` followed by `node rm` will take effect. (A node that is already `NotReady` or fully stopped does not heartbeat, so draining it sticks.)
 :::
 
@@ -188,7 +200,9 @@ This generates a new `nxa_` token on the master and prints it once. Already-join
 
 Because the token is stored only as a hash, rotation is also the *only* way to recover from a lost token — there is no command that reveals the current value. `helyos cluster token show` exists, but it intentionally returns an error rather than the secret.
 
-:::warning Save the new token
+:::warning 
+Save the new token
+
 Like the original, a rotated token is shown once. Capture it from the command output and distribute it securely before bringing up new workers.
 :::
 

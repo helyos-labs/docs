@@ -25,7 +25,8 @@ The installer:
 
 On first start, the daemon generates an API token (logged once), writes a ready-to-use local CLI context to `~/.helyos/config.toml`, and serves the API. Local use is zero-config: once `helyosd` is running, the `helyos` CLI just works against it with no flags or setup.
 
-:::info Where things live
+:::info 
+Where things live
 Binaries go to `/usr/local/bin` (or `~/.helyos/bin` if that directory is not writable and you are not root). Data, logs, and the local CLI context live under `~/.helyos`.
 :::
 
@@ -57,7 +58,8 @@ curl -sSfL https://raw.githubusercontent.com/helyos-labs/helyos/main/install.sh 
   | NO_SERVICE=1 INSTALL_DIR="$HOME/.local/bin" sh
 ```
 
-:::tip Running the daemon yourself
+:::tip 
+Running the daemon yourself
 With `NO_SERVICE=1`, nothing manages the daemon for you. Start it manually with `helyosd`, or run it under your own process supervisor. See [Daemon flags](/docs/reference/daemon-flags) for the full set of options.
 :::
 
@@ -106,7 +108,7 @@ Prefer to build locally? Both binaries are standard Cargo projects.
 
 ### Prerequisites
 
-- **Rust toolchain** — edition 2024. The CLI (`helyos-cli`) and library (`helyos-core`) require Rust **1.85+**; the daemon (`helyosd`) requires Rust **1.88+**. Build with the daemon's MSRV to cover everything.
+- **Rust toolchain** — edition 2024. The CLI requires Rust **1.85+** and the daemon (`helyosd`) requires Rust **1.88+**; build with the daemon's MSRV to cover both.
 - **A container runtime on the host** — Docker or containerd. The daemon auto-detects which is available at startup; without one, deployments cannot run.
 
 Install Rust via [rustup](https://rustup.rs) if you don't already have it:
@@ -136,7 +138,8 @@ sudo install -m 755 helyosd/target/release/helyosd /usr/local/bin/helyosd
 sudo install -m 755 helyos-cli/target/release/helyos /usr/local/bin/helyos
 ```
 
-:::note No service when building from source
+:::note 
+No service when building from source
 A source build does not register an auto-start service. Start the daemon with `helyosd` (see [Quickstart](/docs/getting-started/quickstart)), or wire up your own `systemd`/`launchd` unit.
 :::
 
@@ -161,7 +164,8 @@ helyos status
 
 A healthy local install responds to `/health` and `helyos status` returns cluster info without any extra configuration.
 
-:::tip Find the API token
+:::tip 
+Find the API token
 The daemon logs its auto-generated API token exactly once on first start, as `HELYOS_API_TOKEN=...`. On macOS the installer writes logs to `~/.helyos/log/helyosd.log`; on Linux read them with `journalctl --user -u helyosd`. You'll need this token to drive a remote cluster — see [Remote access](/docs/guides/remote-access).
 :::
 

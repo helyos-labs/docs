@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type {ComponentType, ReactNode, SVGProps} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -28,10 +28,6 @@ function Hero() {
     <header className={styles.hero}>
       <div className={clsx('container', styles.heroInner)}>
         <div className={styles.heroText}>
-          <span className={styles.heroBadge}>
-            <span className={styles.heroDot} />
-            Written in Rust · two binaries · zero external deps
-          </span>
           <Heading as="h1" className={styles.heroTitle}>
             Container orchestration
             <br />
@@ -67,7 +63,7 @@ function Hero() {
 }
 
 type Step = {
-  Icon: typeof IconDownload;
+  Icon: ComponentType<SVGProps<SVGSVGElement>>;
   title: string;
   description: ReactNode;
 };
@@ -110,7 +106,7 @@ function HowItWorks() {
     <section className={styles.how}>
       <div className="container">
         <div className={styles.howHead}>
-          <span className={styles.eyebrow}>How it works</span>
+          <span className="helyos-eyebrow">How it works</span>
           <Heading as="h2" className={styles.howTitle}>
             From zero to running in three steps
           </Heading>

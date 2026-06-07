@@ -4,6 +4,18 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+// Prism code themes tuned to the Navigator palette. Dracula's default dark
+// background (#282A36) is a purple-grey that clashes with the blue-night theme,
+// so we re-base it on a deep blue; the light theme is nudged to match as well.
+const codeThemeLight = {
+  ...prismThemes.github,
+  plain: {...prismThemes.github.plain, backgroundColor: '#f4f7fc'},
+};
+const codeThemeDark = {
+  ...prismThemes.dracula,
+  plain: {...prismThemes.dracula.plain, backgroundColor: '#0f1a33'},
+};
+
 const config: Config = {
   title: 'Helyos',
   tagline: '80% of Kubernetes use-cases with 20% of the complexity',
@@ -99,7 +111,7 @@ const config: Config = {
       title: 'Helyos',
       logo: {
         alt: 'Helyos',
-        src: 'img/helyos-logo.png',
+        src: 'img/helyos-mark.png',
       },
       items: [
         {
@@ -143,7 +155,6 @@ const config: Config = {
             {label: 'helyos', href: 'https://github.com/helyos-labs/helyos'},
             {label: 'helyosd', href: 'https://github.com/helyos-labs/helyosd'},
             {label: 'helyos-cli', href: 'https://github.com/helyos-labs/helyos-cli'},
-            {label: 'helyos-core', href: 'https://github.com/helyos-labs/helyos-core'},
           ],
         },
         {
@@ -160,8 +171,8 @@ const config: Config = {
       copyright: `Copyright © ${new Date().getFullYear()} Helyos. Built with Docusaurus.`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      theme: codeThemeLight,
+      darkTheme: codeThemeDark,
       additionalLanguages: ['bash', 'yaml', 'toml', 'rust', 'json', 'docker', 'nginx'],
     },
   } satisfies Preset.ThemeConfig,

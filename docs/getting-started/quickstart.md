@@ -28,7 +28,8 @@ On first run, the daemon does three things for you:
 2. **Serves the REST API** on `127.0.0.1:6443`. Because the default bind is loopback, the API stays plain HTTP for convenience. (Bind to a non-loopback address and TLS turns on automatically — see [Remote access](/docs/guides/remote-access).)
 3. **Writes a ready-to-use local CLI context** to `~/.helyos/config.toml`, so the `helyos` CLI talks to this daemon with no extra setup.
 
-:::tip Zero-config local
+:::tip 
+Zero-config local
 
 That third step is the key to the quickstart: once `helyosd` is running, every `helyos` command below "just works" against the local daemon — no `helyos login`, no flags, no token to paste.
 
@@ -100,7 +101,8 @@ helyos pods -p demo
 helyos logs nginx -p demo
 ```
 
-:::note Default project
+:::note 
+Default project
 
 When you omit `-p`/`--project`, the CLI targets the project named `default`. Because the service above lives in `demo`, pass `-p demo` (or set a default project on your context). `logs` follows the stream until you press `Ctrl-C`; use `--tail N` to start from the last `N` lines.
 

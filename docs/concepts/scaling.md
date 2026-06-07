@@ -40,7 +40,8 @@ helyos pods --project ecommerce
 
 Each pod has a stable `replica_index`, and its container is named `helyos-<project>-<deployment>-<index>` — for example `helyos-ecommerce-api-0`. The index is also used for per-pod [service discovery](/docs/concepts/service-discovery) names like `api-0.ecommerce.internal`.
 
-:::info Port publishing and replicas
+:::info 
+Port publishing and replicas
 A deployment's `ports` are published to the host **only when `replicas` is `1`**. With more than one replica, Helyos does not bind host ports (multiple containers cannot share the same host port). To expose a multi-replica service, put it behind the built-in reverse proxy with a [route](/docs/guides/routing) rather than a host port.
 :::
 
@@ -102,7 +103,8 @@ After reconciliation, the orchestrator recomputes the deployment's status from i
 - **Pending** — pods are still coming up
 - **Stopped** — the deployment has been stopped (see below)
 
-:::note Reconciliation is continuous
+:::note 
+Reconciliation is continuous
 The same reconcile logic runs not only when you scale, but also when a project is resumed, when a deployment is first created, and when a node dies. If a pod is lost — for example, because its node went down — the orchestrator notices the actual count has dropped below the desired count and recreates the pod, rescheduling it onto a healthy node. You get self-healing without doing anything.
 :::
 
@@ -115,7 +117,8 @@ Scaling in Helyos is **additive and incremental**, not a stop-the-world replacem
 
 Because existing pods are left in place during a scale operation, a multi-replica service stays available while it grows or shrinks. New pods join as they become healthy, and removed pods are drained from DNS before their containers stop.
 
-:::tip Health checks make scaling safer
+:::tip 
+Health checks make scaling safer
 Define an HTTP [health check](/docs/concepts/health-and-restart) so a new replica that starts but does not actually serve gets caught. A pod is marked `Running` as soon as its container starts, but a failing health check then marks it unhealthy and triggers a restart — so a broken replica is replaced rather than left silently in rotation while you scale.
 :::
 
@@ -139,7 +142,8 @@ helyos stop api --project ecommerce
 
 `helyos stop` removes all of a deployment's pods and marks the deployment **Stopped**. The deployment definition is preserved (it is not deleted), so you can bring it back, but its status reflects that it was deliberately stopped rather than scaled down.
 
-:::note Stop a whole project at once
+:::note 
+Stop a whole project at once
 Stopping is also available at the project level. Suspending a project stops every deployment it contains, and resuming it brings them all back by reconciling each deployment to its desired replica count. See [Projects](/docs/concepts/projects).
 :::
 

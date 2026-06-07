@@ -66,7 +66,9 @@ The `network` block on a deployment controls public exposure and routing, not th
 
 For multi-node clusters, Helyos is designed to run an encrypted overlay network so pods on different hosts can talk to each other over a private mesh. The building blocks — key generation, peer configuration, and CIDR allocation — exist in the codebase, but they are not finished and are not yet wired into the daemon's startup.
 
-:::warning Experimental — not production-ready
+:::warning 
+Experimental — not production-ready
+
 The WireGuard overlay is **experimental** and currently **inert**. The overlay flags (`--overlay`, `--cluster-cidr`, `--wg-port`) are accepted by the daemon, but they are not yet consumed: no WireGuard manager is started, no keypair is generated, and no tunnel — kernel or userspace — is brought up. Do not rely on the overlay for cross-node pod networking. Treat it as a placeholder for a feature still under construction, and expect behavior to change.
 :::
 
@@ -103,7 +105,9 @@ Multi-node clustering itself (master/worker over gRPC, heartbeats, rescheduling)
 
 When you run Helyos on the containerd runtime, container networking is handled through the [Container Network Interface (CNI)](https://www.cni.dev/). Helyos can generate CNI network configurations and ships a helper to install the standard plugin binaries — but, like the overlay, the attach/detach path is not complete.
 
-:::warning Experimental — not production-ready
+:::warning 
+Experimental — not production-ready
+
 CNI support is **experimental**. Helyos generates valid CNI `conflist` files and allocates per-network subnets, but attaching and detaching containers to those networks is **not yet implemented** (those operations currently return "not yet implemented"). Treat CNI networking as a preview. The Docker runtime is the supported path today.
 :::
 

@@ -11,17 +11,6 @@
   text-align: center;
 }
 
-.eyebrow {
-  display: inline-block;
-  margin-bottom: 0.75rem;
-  font-family: var(--ifm-heading-font-family);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ifm-color-primary);
-}
-
 .sectionTitle {
   font-size: 2rem;
   line-height: 1.12;
@@ -53,7 +42,8 @@
   padding: 1.6rem 1.5rem 1.5rem;
   border: 1px solid var(--ifm-toc-border-color);
   border-radius: 14px;
-  background: var(--ifm-background-surface-color);
+  background: var(--helyos-card-grid), var(--ifm-background-surface-color);
+  background-size: var(--helyos-card-grid-size);
   overflow: hidden;
   transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.2s ease;
 }
@@ -81,6 +71,17 @@
 
 .cardLink:hover .card::before {
   opacity: 1;
+}
+
+/* Keyboard focus gets the same emphasis as hover (WCAG 2.4.7 parity). */
+.cardLink:focus-visible {
+  outline-offset: 4px;
+  border-radius: 14px;
+}
+
+.cardLink:focus-visible .card {
+  border-color: rgba(var(--helyos-accent-rgb), 0.55);
+  box-shadow: 0 14px 36px rgba(var(--helyos-accent-rgb), 0.14);
 }
 
 /* Icon badge */
@@ -139,5 +140,14 @@
   }
   .sectionTitle {
     font-size: 1.7rem;
+  }
+}
+
+/* Don't physically move the affordances for reduced-motion users. */
+@media (prefers-reduced-motion: reduce) {
+  .cardLink:hover .card,
+  .cardLink:hover .cardIcon,
+  .cardLink:hover .cardMore svg {
+    transform: none !important;
   }
 }

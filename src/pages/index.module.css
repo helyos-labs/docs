@@ -36,43 +36,6 @@
   min-width: 0;
 }
 
-.heroBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1.4rem;
-  padding: 0.34rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid rgba(var(--helyos-accent-rgb), 0.22);
-  background: rgba(var(--helyos-accent-rgb), 0.08);
-  font-family: var(--ifm-heading-font-family);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  color: var(--ifm-color-primary);
-}
-
-.heroDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--ifm-color-primary);
-  box-shadow: 0 0 0 0 rgba(var(--helyos-accent-rgb), 0.55);
-  animation: heroPulse 2.4s ease-out infinite;
-}
-
-@keyframes heroPulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(var(--helyos-accent-rgb), 0.5);
-  }
-  70% {
-    box-shadow: 0 0 0 7px rgba(var(--helyos-accent-rgb), 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(var(--helyos-accent-rgb), 0);
-  }
-}
-
 .heroTitle {
   font-size: 3.4rem;
   line-height: 1.04;
@@ -115,18 +78,6 @@
   box-shadow: 0 24px 60px -24px rgba(var(--helyos-accent-rgb), 0.4);
 }
 
-/* ───────────────────────  Shared section eyebrow  ─────────────────────── */
-.eyebrow {
-  display: inline-block;
-  margin-bottom: 0.7rem;
-  font-family: var(--ifm-heading-font-family);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ifm-color-primary);
-}
-
 /* ───────────────────────────  How it works  ──────────────────────────── */
 .how {
   padding: 1rem 0 5rem;
@@ -151,7 +102,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  counter-reset: none;
 }
 
 .step {
@@ -159,7 +109,8 @@
   padding: 1.6rem 1.5rem;
   border: 1px solid var(--ifm-toc-border-color);
   border-radius: 14px;
-  background: var(--ifm-background-surface-color);
+  background: var(--helyos-card-grid), var(--ifm-background-surface-color);
+  background-size: var(--helyos-card-grid-size);
 }
 
 /* Connector line between steps (desktop only). */
@@ -184,7 +135,8 @@
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.95rem;
   font-weight: 500;
-  color: rgba(var(--helyos-accent-rgb), 0.5);
+  color: var(--ifm-color-primary);
+  opacity: 0.92;
 }
 
 .stepIcon {
@@ -250,5 +202,12 @@
   }
   .step:not(:last-child)::after {
     display: none;
+  }
+}
+
+/* Hold affordances still for reduced-motion users. */
+@media (prefers-reduced-motion: reduce) {
+  .howLink:hover svg {
+    transform: none !important;
   }
 }

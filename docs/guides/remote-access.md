@@ -23,7 +23,9 @@ A context bundles everything the CLI needs to talk to one daemon:
 
 Contexts live in `~/.helyos/config.toml` (override the path with `HELYOS_CONFIG`). The CLI manages this file for you through `helyos login` and `helyos context …`. See the [CLI config reference](/docs/reference/cli-config) for the full file format.
 
-:::info Resolution precedence
+:::info 
+Resolution precedence
+
 For any command, the CLI resolves the server and token in this order: **CLI flag (`--server` / `--token`) > environment variable (`HELYOS_SERVER` / `HELYOS_API_TOKEN`) > config file (active context) > built-in default (`http://localhost:6443`)**. Use `--context <NAME>` to target a specific context for a single command.
 :::
 
@@ -87,7 +89,9 @@ Trust and pin this CA? [y/N]
 
 Once you confirm, that CA is stored in the context and every future request to this cluster is verified against it. To verify the fingerprint out of band, ask a cluster operator to run `curl -sk https://cluster.example.com:6443/api/v1/ca` and compare the `sha256` field.
 
-:::warning Interactive confirmation is required
+:::warning 
+Interactive confirmation is required
+
 Trust-on-first-use prompts only work on a terminal. In a non-interactive shell (CI, scripts), the CLI **refuses** to pin a CA without an explicit `--ca-fingerprint` or `--ca-file`. This is fail-closed by design — see the next section.
 :::
 

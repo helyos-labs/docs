@@ -123,7 +123,9 @@ Choose Nomad when you need to schedule mixed (non-container) workloads or want H
 
 To be fair, here is where Helyos is genuinely less capable today:
 
-:::warning Experimental features
+:::warning 
+Experimental features
+
 The **WireGuard overlay network** and **CNI plugin support** are experimental and not production-ready. Overlay tunnel creation is not yet implemented (it currently only logs). Plan around per-project Docker networks for now, and treat overlay/CNI as preview features.
 :::
 

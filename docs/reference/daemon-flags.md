@@ -140,7 +140,7 @@ These flags configure the built-in reverse proxy, automatic route TLS, and the e
 helyosd --proxy-backend nginx --acme-email ops@example.com
 ```
 
-:::warning Experimental
+:::warning 
 The WireGuard overlay (`--overlay`, `--cluster-cidr`, `--wg-port`) is **experimental and not production-ready**. Tunnel creation is not yet implemented; the daemon currently only logs overlay activity. CNI plugin support (installed separately via `helyos setup cni`) is likewise experimental.
 :::
 

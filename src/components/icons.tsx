@@ -51,13 +51,13 @@ export function IconCompass(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-/** Batteries included — a globe. */
-export function IconBatteries(props: SVGProps<SVGSVGElement>) {
+/** Batteries included — stacked layers (everything bundled in). */
+export function IconBundle(props: SVGProps<SVGSVGElement>) {
   return (
     <Base {...props}>
-      <circle cx="12" cy="12" r="9.2" />
-      <path d="M3 12h18" />
-      <path d="M12 2.8a13 13 0 0 1 0 18.4 13 13 0 0 1 0-18.4z" />
+      <path d="m12 2.5 9.2 5-9.2 5-9.2-5z" />
+      <path d="m3 12 9 4.9 9-4.9" />
+      <path d="m3 16.4 9 4.9 9-4.9" />
     </Base>
   );
 }

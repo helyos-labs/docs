@@ -60,7 +60,9 @@ helyos scale api 10  # scale to 10 replicas
 helyos logs api      # stream logs
 ```
 
-:::tip Zero-config locally
+:::tip 
+Zero-config locally
+
 On first start, `helyosd` generates an API token, prints it once, and writes a ready-to-use CLI context to `~/.helyos/config.toml`. Run the daemon, and the `helyos` CLI just works locally — no flags, no setup.
 :::
 
@@ -92,9 +94,11 @@ You get the orchestration features that matter most for everyday deployments, wi
 - **Service discovery** — an embedded DNS server resolves `<deployment>.<project>.internal` when you enable `--dns-mode embedded`.
 - **HTTP health checks & restart policies** — HTTP probes with configurable interval, timeout, and retries, plus `always` / `onfailure` / `never` restart policies with exponential backoff and crash-loop detection.
 - **Remote, multi-user access** — mint per-user API tokens, pin the daemon's CA with `helyos login`, and switch between clusters using named contexts.
-- **Runtime flexibility** — Docker (via bollard) and containerd (via the `ctr` CLI), auto-detected at startup.
+- **Runtime flexibility** — Docker and containerd, auto-detected at startup.
 
-:::warning Experimental features
+:::warning 
+Experimental features
+
 The WireGuard overlay network and CNI plugin support are experimental. Overlay tunnel creation is not yet implemented (it currently only logs), so treat overlay networking as not production-ready. Per-project Docker networks are the supported networking model today.
 :::
 

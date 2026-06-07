@@ -10,7 +10,8 @@ This walkthrough takes you from an empty directory to a running, scaled, and pub
 
 If you just want the shortest path to a running container, see the [Quickstart](/docs/getting-started/quickstart). This page is the slower, narrated version.
 
-:::note Prerequisites
+:::note 
+Prerequisites
 
 You need `helyosd` running and the `helyos` CLI installed. If you ran the [installer](/docs/getting-started/installation), the daemon is already running locally and wrote a CLI context for you, so `helyos` works against the local daemon with no extra setup. Confirm with:
 
@@ -111,7 +112,8 @@ Here is what each field does:
 | `volumes` | Persistent storage to mount into the container. |
 | `restart` | What to do when a container exits: `always`, `onfailure`, or `never`. Defaults to `always`. |
 
-:::info A deployment becomes pods
+:::info 
+A deployment becomes pods
 
 A **deployment** is the desired state ("run 3 copies of this image"). Helyos turns that into running **pods** — one per replica. You scale a deployment by changing how many pods it manages. See [Deployments and Pods](/docs/concepts/deployments-and-pods).
 
@@ -148,7 +150,8 @@ A few things worth noting:
 - **`ports`** is a list of integers — the ports your container listens on inside its network.
 - The **`healthcheck`** is an HTTP GET against `path` (here `/`). Helyos probes it every `interval`, allowing `timeout` per attempt and `retries` consecutive failures before marking a pod unhealthy. HTTP is the only probe type — there is no TCP or exec probe.
 
-:::warning Use the exact field names
+:::warning 
+Use the exact field names
 
 Two field names trip people up:
 
@@ -179,7 +182,8 @@ The CLI submits the spec, then watches the pods come up and reports progress liv
 
 Helyos pulls the image, schedules each replica onto a node, starts the containers, and waits for them to reach the `Running` state. The command returns once all replicas are ready.
 
-:::tip Deploy is idempotent
+:::tip 
+Deploy is idempotent
 
 `helyos deploy` describes desired state. Re-running it after editing the spec reconciles the running deployment toward the new spec — change `replicas`, the `image`, or any other field and deploy again.
 
@@ -235,7 +239,8 @@ Logs stream live — press `Ctrl-C` to stop. To start from the last N lines inst
 helyos logs web -p hello --tail 100
 ```
 
-:::note The default project
+:::note 
+The default project
 
 If you omit `-p` / `--project`, the CLI targets the project named `default`. Since this walkthrough deployed into the `hello` project, you must pass `-p hello` to `logs`, `scale`, `stop`, and similar commands.
 

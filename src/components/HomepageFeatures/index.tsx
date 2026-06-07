@@ -6,7 +6,7 @@ import {
   IconDeploy,
   IconSecure,
   IconCompass,
-  IconBatteries,
+  IconBundle,
   IconCluster,
   IconRuntime,
   IconArrow,
@@ -57,7 +57,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Batteries included',
-    Icon: IconBatteries,
+    Icon: IconBundle,
     to: '/docs/guides/routing',
     description: (
       <>
@@ -94,7 +94,7 @@ const FeatureList: FeatureItem[] = [
 function Feature({title, Icon, description, to}: FeatureItem) {
   return (
     <div className={clsx('col col--4', styles.cardCol)}>
-      <Link to={to} className={styles.cardLink}>
+      <Link to={to} className={styles.cardLink} aria-label={title}>
         <div className={styles.card}>
           <span className={styles.cardIcon}>
             <Icon width={22} height={22} />
@@ -118,7 +118,7 @@ export default function HomepageFeatures(): ReactNode {
     <section className={styles.features}>
       <div className="container">
         <div className={styles.sectionHead}>
-          <span className={styles.eyebrow}>Why Helyos</span>
+          <span className="helyos-eyebrow">Why Helyos</span>
           <Heading as="h2" className={styles.sectionTitle}>
             Orchestration without the operations tax
           </Heading>
@@ -128,8 +128,8 @@ export default function HomepageFeatures(): ReactNode {
           </p>
         </div>
         <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+          {FeatureList.map((props) => (
+            <Feature key={props.title} {...props} />
           ))}
         </div>
       </div>

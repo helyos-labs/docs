@@ -27,30 +27,12 @@ sidebar:
 
 | Folder | Section |
 |---|---|
-| `introduction/` | What Helyos is, comparisons, architecture |
+| `introduction/` | What Helyos is, comparisons, how it works |
 | `getting-started/` | Installation, quickstart, first deployment |
 | `concepts/` | Projects, deployments, scheduling, health, DNS |
 | `guides/` | Task-oriented how-tos |
 | `reference/` | CLI, deployment spec, REST API, daemon flags, config |
 | `security/` | Security model, tokens, TLS, secrets |
-| `project/` | Internals, repositories, contributing |
-
-The sidebar is generated automatically from this structure
-(`sidebars.ts` + each folder's `_category_.json`). Page order within a category
-is set by the `sidebar_position` front matter on each page. Search is provided
-offline by `@easyops-cn/docusaurus-search-local` — no external service required.
-
-## Deployment
-
-CI (`.github/workflows/deploy.yml`) builds on every push and pull request.
-Publishing is intentionally opt-in so the hosting target can be chosen later:
-
-- **GitHub Pages** — set `url`/`baseUrl` in `docusaurus.config.ts` for project
-  pages (`url: https://helyos-labs.github.io`, `baseUrl: /docs/`), enable Pages
-  (Settings → Pages → Source: *GitHub Actions*), and add the repository variable
-  `ENABLE_PAGES=true`.
-- **Custom domain / Vercel / Netlify** — keep `baseUrl: '/'`, point `url` at your
-  domain, and connect the repo to your host (or adapt the deploy job).
 
 ## License
 

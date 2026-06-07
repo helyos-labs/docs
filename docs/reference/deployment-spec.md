@@ -8,7 +8,7 @@ description: Complete YAML schema reference for a Helyos deployment spec — eve
 
 A deployment spec is the declarative YAML file you hand to `helyos deploy`. It describes a single deployment: which image to run, how many replicas, what ports and environment it needs, where to mount storage, how to health-check it, when to restart it, and how to expose it on the network. The daemon parses, validates, and reconciles it into running pods.
 
-This page is the complete schema reference. Every field is listed with its type, default, and whether it is required, grouped by section, followed by a full annotated example. The spec is defined in `helyos-core` (`src/domain/models/deployment.rs`) and validated by `src/config.rs`.
+This page is the complete schema reference. Every field is listed with its type, default, and whether it is required, grouped by section, followed by a full annotated example.
 
 ```bash
 helyos deploy app.yaml

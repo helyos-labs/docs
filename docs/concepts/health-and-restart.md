@@ -14,7 +14,8 @@ This page explains both mechanisms, how they interact, and how to configure them
 
 A health check is an HTTP probe that Helyos runs against each pod on a fixed interval. If a pod fails enough consecutive probes, Helyos considers it unhealthy and restarts it in place.
 
-:::info HTTP probes only
+:::info 
+HTTP probes only
 Helyos supports **HTTP health probes only**. There is **no TCP probe and no exec/command probe**. The daemon sends an HTTP `GET` to a path on your container and treats any `2xx` response as healthy; anything else (non-success status, connection error, or timeout) counts as a failure.
 :::
 
@@ -52,7 +53,8 @@ healthcheck:
 
 With this configuration, Helyos probes `http://<pod-ip>:3000/health` every 10 seconds. If the endpoint fails to return a success status three times in a row, the pod is restarted.
 
-:::note A port is required for probing
+:::note 
+A port is required for probing
 The probe targets the **first port** in your deployment's `ports` list. If a deployment declares a `healthcheck` but no `ports`, Helyos has no port to probe and the health check is silently skipped. Always declare the port your health endpoint listens on.
 :::
 
@@ -72,7 +74,8 @@ For example, with `retries: 3`:
 
 If a probe had succeeded at step 2, the counter would reset and the pod would return to `Healthy`.
 
-:::tip Make your health endpoint cheap and honest
+:::tip 
+Make your health endpoint cheap and honest
 Your `/health` endpoint should return success only when the pod can actually serve traffic, and it should respond well within `timeout`. A slow health endpoint causes timeouts that look like failures and can trigger unnecessary restarts. If startup is slow, give the pod room with a generous `interval` and `retries` rather than a long `timeout`.
 :::
 
@@ -88,7 +91,8 @@ Set the policy with the top-level `restart` field. The default is `always`.
 | `onfailure` | Restart only when the container exits with a non-zero exit code.          |
 | `never`     | Never restart. The pod is marked `Failed` when the container exits.      |
 
-:::warning The value is `onfailure` — one word
+:::warning 
+The value is `onfailure` — one word
 The on-failure policy is spelled **`onfailure`** (lowercase, no hyphen, no underscore). Values like `on-failure`, `on_failure`, or `OnFailure` are **not** accepted. Use exactly `always`, `onfailure`, or `never`.
 :::
 
@@ -143,7 +147,8 @@ Running → (exit) → Restarting → (backoff) → Running → ... → CrashLoo
 
 This protects your cluster from a pod that can never become healthy: rather than burning resources on endless restarts, Helyos surfaces the problem so you can investigate.
 
-:::tip Diagnosing a crash loop
+:::tip 
+Diagnosing a crash loop
 When you see `CrashLoopBackoff`, inspect the pod's logs to find why the container keeps exiting:
 
 ```bash
@@ -163,7 +168,8 @@ These two mechanisms cover different failure modes, and they work together:
 
 Both restart paths share the same exponential backoff and crash-loop detection. A pod that is repeatedly killed by failing health checks will eventually land in `CrashLoopBackoff` just like one that keeps crashing on its own.
 
-:::note Defaults at a glance
+:::note 
+Defaults at a glance
 If you specify nothing, a deployment has `restart: always` and **no** health check. Pods restart whenever the container exits, but Helyos cannot detect a hung-but-running process until you add a `healthcheck`.
 :::
 
