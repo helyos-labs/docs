@@ -164,4 +164,4 @@ The subnet allocator hands out octets monotonically and does not reclaim release
 ## See also
 
 - [Deployment spec](/docs/reference/deployment-spec) — the `network` block and other deployment fields.
-- [Architecture](/docs/introduction/architecture) — where networking fits in the ports-and-adapters design.
+- [How it works](/docs/introduction/architecture) — where networking fits into the daemon.

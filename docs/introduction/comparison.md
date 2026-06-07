@@ -147,7 +147,7 @@ These are deliberate trade-offs in service of simplicity. If they are dealbreake
 ## Next steps
 
 - [What is Helyos?](/docs/introduction/what-is-helyos) — the high-level overview
-- [Architecture](/docs/introduction/architecture) — how the daemon, CLI, and core library fit together
+- [How it works](/docs/introduction/architecture) — how the daemon and the CLI fit together
 - [Installation](/docs/getting-started/installation) — get Helyos running in minutes
 - [Quickstart](/docs/getting-started/quickstart) — deploy your first service
 - [Security model](/docs/security/security-model) — secure-by-default TLS, tokens, and secrets

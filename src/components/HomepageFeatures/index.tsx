@@ -1,20 +1,29 @@
-import type {ReactNode} from 'react';
+import type {ComponentType, ReactNode, SVGProps} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
+import {
+  IconDeploy,
+  IconSecure,
+  IconCompass,
+  IconBatteries,
+  IconCluster,
+  IconRuntime,
+  IconArrow,
+} from '@site/src/components/icons';
 import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  icon: string;
+  Icon: ComponentType<SVGProps<SVGSVGElement>>;
   description: ReactNode;
-  to?: string;
+  to: string;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: 'Deploy in seconds',
-    icon: '🚀',
+    Icon: IconDeploy,
     to: '/docs/guides/deploy-a-service',
     description: (
       <>
@@ -25,7 +34,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Secure by default',
-    icon: '🔒',
+    Icon: IconSecure,
     to: '/docs/security/security-model',
     description: (
       <>
@@ -37,7 +46,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'kubectl-style remote control',
-    icon: '🧭',
+    Icon: IconCompass,
     to: '/docs/guides/remote-access',
     description: (
       <>
@@ -48,7 +57,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Batteries included',
-    icon: '🌐',
+    Icon: IconBatteries,
     to: '/docs/guides/routing',
     description: (
       <>
@@ -60,7 +69,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Multi-node clustering',
-    icon: '🧩',
+    Icon: IconCluster,
     to: '/docs/guides/clustering',
     description: (
       <>
@@ -71,7 +80,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Docker & containerd',
-    icon: '⚙️',
+    Icon: IconRuntime,
     to: '/docs/introduction/architecture',
     description: (
       <>
@@ -82,27 +91,24 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-function Feature({title, icon, description, to}: FeatureItem) {
-  const body = (
-    <div className={styles.card}>
-      <div className={styles.cardIcon} aria-hidden="true">
-        {icon}
-      </div>
-      <Heading as="h3" className={styles.cardTitle}>
-        {title}
-      </Heading>
-      <p className={styles.cardText}>{description}</p>
-    </div>
-  );
+function Feature({title, Icon, description, to}: FeatureItem) {
   return (
     <div className={clsx('col col--4', styles.cardCol)}>
-      {to ? (
-        <Link to={to} className={styles.cardLink}>
-          {body}
-        </Link>
-      ) : (
-        body
-      )}
+      <Link to={to} className={styles.cardLink}>
+        <div className={styles.card}>
+          <span className={styles.cardIcon}>
+            <Icon width={22} height={22} />
+          </span>
+          <Heading as="h3" className={styles.cardTitle}>
+            {title}
+          </Heading>
+          <p className={styles.cardText}>{description}</p>
+          <span className={styles.cardMore}>
+            Learn more
+            <IconArrow width={15} height={15} />
+          </span>
+        </div>
+      </Link>
     </div>
   );
 }
@@ -111,6 +117,16 @@ export default function HomepageFeatures(): ReactNode {
   return (
     <section className={styles.features}>
       <div className="container">
+        <div className={styles.sectionHead}>
+          <span className={styles.eyebrow}>Why Helyos</span>
+          <Heading as="h2" className={styles.sectionTitle}>
+            Orchestration without the operations tax
+          </Heading>
+          <p className={styles.sectionLede}>
+            Everything you need to run containers in production — and nothing you
+            have to assemble yourself.
+          </p>
+        </div>
         <div className="row">
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />

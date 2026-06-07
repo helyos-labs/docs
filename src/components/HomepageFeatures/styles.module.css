@@ -1,51 +1,143 @@
+/* ─────────────────────────  Features section  ─────────────────────────── */
 .features {
-  padding: 3.5rem 0;
+  padding: 5rem 0 4.5rem;
   width: 100%;
 }
 
+/* Section header */
+.sectionHead {
+  max-width: 40rem;
+  margin: 0 auto 2.75rem;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  font-family: var(--ifm-heading-font-family);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  line-height: 1.12;
+  margin-bottom: 0.75rem;
+}
+
+.sectionLede {
+  font-size: 1.08rem;
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 0;
+}
+
+/* ─────────────────────────────  Cards  ────────────────────────────────── */
 .cardCol {
   margin-bottom: 1.5rem;
 }
 
-.cardLink {
+.cardLink,
+.cardLink:hover {
   display: block;
   height: 100%;
   text-decoration: none;
   color: inherit;
 }
 
-.cardLink:hover {
-  text-decoration: none;
-  color: inherit;
+.card {
+  position: relative;
+  height: 100%;
+  padding: 1.6rem 1.5rem 1.5rem;
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: 14px;
+  background: var(--ifm-background-surface-color);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.2s ease;
 }
 
-.card {
-  height: 100%;
-  padding: 1.5rem;
-  border: 1px solid var(--ifm-toc-border-color);
-  border-radius: 12px;
-  background: var(--ifm-background-surface-color);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+/* Faint chart-grid glow that intensifies on hover. */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    420px 160px at 100% 0%,
+    rgba(var(--helyos-accent-rgb), 0.08),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
 }
 
 .cardLink:hover .card {
-  border-color: var(--ifm-color-primary);
-  box-shadow: 0 8px 24px rgba(59, 111, 224, 0.12);
-  transform: translateY(-2px);
+  border-color: rgba(var(--helyos-accent-rgb), 0.55);
+  box-shadow: 0 14px 36px rgba(var(--helyos-accent-rgb), 0.14);
+  transform: translateY(-3px);
 }
 
+.cardLink:hover .card::before {
+  opacity: 1;
+}
+
+/* Icon badge */
 .cardIcon {
-  font-size: 1.75rem;
-  line-height: 1;
-  margin-bottom: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1.1rem;
+  border-radius: 11px;
+  color: var(--ifm-color-primary);
+  background: rgba(var(--helyos-accent-rgb), 0.1);
+  border: 1px solid rgba(var(--helyos-accent-rgb), 0.18);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.cardLink:hover .cardIcon {
+  background: rgba(var(--helyos-accent-rgb), 0.16);
+  transform: scale(1.04);
 }
 
 .cardTitle {
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   margin-bottom: 0.5rem;
 }
 
 .cardText {
   color: var(--ifm-color-emphasis-700);
-  margin-bottom: 0;
+  font-size: 0.97rem;
+  margin-bottom: 1.1rem;
+}
+
+/* "Learn more →" affordance */
+.cardMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--ifm-heading-font-family);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+}
+
+.cardMore svg {
+  transition: transform 0.2s ease;
+}
+
+.cardLink:hover .cardMore svg {
+  transform: translateX(3px);
+}
+
+@media (max-width: 996px) {
+  .features {
+    padding: 3.5rem 0 3rem;
+  }
+  .sectionTitle {
+    font-size: 1.7rem;
+  }
 }

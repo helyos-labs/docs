@@ -1,68 +1,251 @@
 /**
- * Helyos documentation theme.
- * Infima ships with the classic template; we override its variables to match
- * the Helyos brand (royal blue, derived from the logo).
+ * Helyos documentation — "Navigator" theme.
+ * Refined, modern technical docs: Bricolage Grotesque (display) + Hanken Grotesk
+ * (body) + JetBrains Mono (code), a royal-blue accent, and a subtle nautical-chart
+ * grid. Light by default with a deep blue-night dark mode.
  */
 
+/* ─────────────────────────────  Typography  ───────────────────────────── */
 :root {
-  --ifm-color-primary: #3b6fe0;
-  --ifm-color-primary-dark: #2560dd;
-  --ifm-color-primary-darker: #225ad1;
-  --ifm-color-primary-darkest: #1c4aac;
-  --ifm-color-primary-light: #547fe4;
-  --ifm-color-primary-lighter: #6189e6;
-  --ifm-color-primary-lightest: #8aa8ec;
+  --ifm-font-family-base: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI',
+    Roboto, sans-serif;
+  --ifm-heading-font-family: 'Bricolage Grotesque', 'Hanken Grotesk', system-ui,
+    sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', ui-monospace, 'SFMono-Regular',
+    Menlo, monospace;
 
-  --ifm-code-font-size: 95%;
-  --ifm-navbar-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.08);
-
-  --helyos-hero-gradient: radial-gradient(
-      1200px 600px at 70% -10%,
-      rgba(59, 111, 224, 0.18),
-      transparent 60%
-    ),
-    linear-gradient(180deg, #f6f9ff 0%, var(--ifm-background-color) 100%);
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.7;
+  --ifm-heading-font-weight: 700;
+  --ifm-h1-font-size: 2.6rem;
+  --ifm-code-font-size: 88%;
 }
 
-/* Lighter palette for dark mode readability. */
+/* ───────────────────────────  Light palette  ──────────────────────────── */
+:root {
+  --ifm-color-primary: #2f63dd;
+  --ifm-color-primary-dark: #2a59c7;
+  --ifm-color-primary-darker: #2753bc;
+  --ifm-color-primary-darkest: #20449b;
+  --ifm-color-primary-light: #4a78e2;
+  --ifm-color-primary-lighter: #5a83e4;
+  --ifm-color-primary-lightest: #88a6ec;
+
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #f8fafd;
+  --ifm-heading-color: #0b1530;
+  --ifm-font-color-base: #283247;
+  --ifm-toc-border-color: #e8ecf4;
+  --ifm-color-emphasis-200: #eef1f7;
+  --ifm-color-emphasis-300: #dde3ee;
+
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.72);
+  --ifm-navbar-shadow: none;
+  --ifm-navbar-height: 4rem;
+  --ifm-global-radius: 0.6rem;
+  --ifm-code-background: #f2f5fb;
+
+  --ifm-link-color: var(--ifm-color-primary);
+  --ifm-menu-color-background-active: rgba(47, 99, 221, 0.08);
+  --ifm-menu-color-background-hover: rgba(47, 99, 221, 0.06);
+
+  --docusaurus-highlighted-code-line-bg: rgba(47, 99, 221, 0.1);
+
+  /* Royal-blue accent in RGB for translucent layers. */
+  --helyos-accent-rgb: 47, 99, 221;
+  /* Nautical-chart grid + soft glow used on the hero and section bands. */
+  --helyos-grid:
+    radial-gradient(900px 460px at 78% -12%, rgba(var(--helyos-accent-rgb), 0.14), transparent 60%),
+    linear-gradient(to right, rgba(11, 21, 48, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 21, 48, 0.045) 1px, transparent 1px);
+  --helyos-grid-size: 100% 100%, 32px 32px, 32px 32px;
+}
+
+/* ─────────────────────────  Dark (blue night)  ────────────────────────── */
 [data-theme='dark'] {
-  --ifm-color-primary: #7aa0ff;
-  --ifm-color-primary-dark: #5685ff;
-  --ifm-color-primary-darker: #4577ff;
-  --ifm-color-primary-darkest: #1450ff;
-  --ifm-color-primary-light: #9ebbff;
-  --ifm-color-primary-lighter: #afc8ff;
-  --ifm-color-primary-lightest: #e0e9ff;
+  --ifm-color-primary: #6f97ff;
+  --ifm-color-primary-dark: #4f7eff;
+  --ifm-color-primary-darker: #3f72ff;
+  --ifm-color-primary-darkest: #1450f0;
+  --ifm-color-primary-light: #8fb0ff;
+  --ifm-color-primary-lighter: #9fbcff;
+  --ifm-color-primary-lightest: #c7d8ff;
 
-  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.08);
+  --ifm-background-color: #0a0f1e;
+  --ifm-background-surface-color: #111a30;
+  --ifm-heading-color: #eaf0ff;
+  --ifm-font-color-base: #c2ccdf;
+  --ifm-toc-border-color: rgba(255, 255, 255, 0.09);
+  --ifm-color-emphasis-200: #1a2540;
+  --ifm-color-emphasis-300: #243152;
 
-  --helyos-hero-gradient: radial-gradient(
-      1200px 600px at 70% -10%,
-      rgba(59, 111, 224, 0.28),
-      transparent 60%
-    ),
-    linear-gradient(180deg, #10131c 0%, var(--ifm-background-color) 100%);
+  --ifm-navbar-background-color: rgba(10, 15, 30, 0.66);
+  --ifm-code-background: #121d36;
+
+  --ifm-menu-color-background-active: rgba(111, 151, 255, 0.12);
+  --ifm-menu-color-background-hover: rgba(111, 151, 255, 0.08);
+
+  --docusaurus-highlighted-code-line-bg: rgba(111, 151, 255, 0.15);
+
+  --helyos-accent-rgb: 111, 151, 255;
+  --helyos-grid:
+    radial-gradient(900px 460px at 78% -12%, rgba(var(--helyos-accent-rgb), 0.18), transparent 60%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 }
 
-/* Slightly tighter, more confident headings. */
+/* ───────────────────────────  Headings  ───────────────────────────────── */
+h1,
+h2,
+h3,
+.hero__title,
+.navbar__title {
+  letter-spacing: -0.02em;
+}
+
 .markdown h1:first-child {
-  --ifm-h1-font-size: 2.4rem;
+  --ifm-h1-font-size: 2.6rem;
+  margin-bottom: 1.2rem;
 }
 
-/* Navbar logo sizing (the brand mark is a rounded badge). */
+.markdown > h2 {
+  margin-top: 2.6rem;
+  padding-top: 0.4rem;
+  font-size: 1.6rem;
+}
+
+/* ────────────────────────────  Navbar  ────────────────────────────────── */
+.navbar {
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+}
+
 .navbar__logo img {
-  border-radius: 6px;
+  border-radius: 7px;
 }
 
-/* Reusable badge for "experimental"/status notes inside docs. */
+.navbar__title {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.navbar__item,
+.navbar__link {
+  font-weight: 500;
+}
+
+/* ────────────────────────────  Sidebar  ───────────────────────────────── */
+.menu {
+  font-size: 0.92rem;
+  padding: 1rem 0.6rem !important;
+}
+
+.menu__link {
+  border-radius: 0.5rem;
+  font-weight: 500;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  font-weight: 600;
+}
+
+.menu__list-item-collapsible .menu__link--active {
+  background: var(--ifm-menu-color-background-active);
+}
+
+/* ──────────────────────────  Code & inline  ───────────────────────────── */
+.theme-code-block,
+pre code {
+  font-variant-ligatures: none;
+}
+
+div[class^='codeBlockContainer'] {
+  border-radius: 0.7rem;
+  box-shadow: 0 1px 2px rgba(11, 21, 48, 0.05);
+}
+
+code {
+  border-radius: 0.4rem;
+  border: 1px solid var(--ifm-toc-border-color);
+  padding: 0.12rem 0.36rem;
+  font-size: 0.85em;
+}
+
+a code {
+  border-color: transparent;
+}
+
+/* ───────────────────────────  Admonitions  ────────────────────────────── */
+.theme-admonition {
+  border-radius: 0.7rem;
+  border-width: 1px;
+  border-left-width: 3px;
+}
+
+/* ─────────────────────────────  Tables  ───────────────────────────────── */
+.markdown table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.markdown table thead tr {
+  border-bottom: 2px solid var(--ifm-toc-border-color);
+}
+
+.markdown table th {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 600;
+  text-transform: none;
+}
+
+/* ────────────────────────────  Buttons  ───────────────────────────────── */
+.button {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-radius: 0.6rem;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.button--primary {
+  box-shadow: 0 8px 22px rgba(var(--helyos-accent-rgb), 0.28);
+}
+
+.button--lg:hover {
+  transform: translateY(-1px);
+}
+
+/* ──────────────────────  Footer (deep night)  ─────────────────────────── */
+.footer--dark {
+  --ifm-footer-background-color: #070b16;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ───────────────────────────  Misc polish  ────────────────────────────── */
+::selection {
+  background: rgba(var(--helyos-accent-rgb), 0.22);
+}
+
+/* Status pill usable inside docs, e.g. <span class="helyos-badge">experimental</span> */
 .helyos-badge {
   display: inline-block;
-  padding: 0.1rem 0.5rem;
-  font-size: 0.75rem;
+  padding: 0.1rem 0.55rem;
+  font-size: 0.72rem;
   font-weight: 600;
+  font-family: var(--ifm-heading-font-family);
   border-radius: 999px;
-  background: var(--ifm-color-primary-lightest);
-  color: var(--ifm-color-primary-darkest);
+  background: rgba(var(--helyos-accent-rgb), 0.14);
+  color: var(--ifm-color-primary);
   vertical-align: middle;
+}
+
+/* Respect reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }

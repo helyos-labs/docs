@@ -44,6 +44,21 @@ const config: Config = {
     },
   },
 
+  // Brand typography: Bricolage Grotesque (display) + Hanken Grotesk (body) + JetBrains Mono (code).
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: {rel: 'preconnect', href: 'https://fonts.googleapis.com'},
+    },
+    {
+      tagName: 'link',
+      attributes: {rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: 'anonymous'},
+    },
+  ],
+  stylesheets: [
+    'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400..800&family=JetBrains+Mono:wght@400..600&display=swap',
+  ],
+
   presets: [
     [
       'classic',

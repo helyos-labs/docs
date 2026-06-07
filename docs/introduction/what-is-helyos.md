@@ -112,5 +112,5 @@ If you genuinely need the full Kubernetes feature set, use Kubernetes. If you ha
 ## Next steps
 
 - [Quickstart](/docs/getting-started/quickstart) — install Helyos and deploy your first service.
-- [Architecture](/docs/introduction/architecture) — how the daemon, CLI, and core library fit together.
+- [How it works](/docs/introduction/architecture) — how the daemon and the CLI fit together.
 - [Comparison](/docs/introduction/comparison) — Helyos vs. Kubernetes, Docker Swarm, and Nomad.
