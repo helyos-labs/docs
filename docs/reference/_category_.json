@@ -1,0 +1,9 @@
+{
+  "label": "Reference",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "title": "Reference",
+    "description": "Complete reference for the CLI, deployment spec, REST API, daemon flags, and client configuration."
+  }
+}

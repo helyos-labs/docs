@@ -1,0 +1,9 @@
+{
+  "label": "Project",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "title": "Project",
+    "description": "How Helyos is built and how to contribute: architecture internals, the repositories, and contribution workflow."
+  }
+}

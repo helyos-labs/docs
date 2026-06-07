@@ -1,0 +1,51 @@
+.features {
+  padding: 3.5rem 0;
+  width: 100%;
+}
+
+.cardCol {
+  margin-bottom: 1.5rem;
+}
+
+.cardLink {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.cardLink:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card {
+  height: 100%;
+  padding: 1.5rem;
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.cardLink:hover .card {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 8px 24px rgba(59, 111, 224, 0.12);
+  transform: translateY(-2px);
+}
+
+.cardIcon {
+  font-size: 1.75rem;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.cardTitle {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.cardText {
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 0;
+}

@@ -1,0 +1,10 @@
+{
+  "label": "Introduction",
+  "position": 1,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "Introduction to Helyos",
+    "description": "Understand what Helyos is, how it compares to other orchestrators, and how its pieces fit together."
+  }
+}

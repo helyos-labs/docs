@@ -1,0 +1,9 @@
+{
+  "label": "Core Concepts",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "title": "Core Concepts",
+    "description": "The building blocks of Helyos: projects, deployments, pods, scheduling, health, and service discovery."
+  }
+}
